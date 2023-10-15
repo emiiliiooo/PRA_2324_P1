@@ -8,7 +8,7 @@ class ListArray : public List<T> {
 		T* arr;
 		int max;
 		int n; 
-		static const int MINSIZE;
+		static const int MINSIZE = 2;
 
 		void resize (int new_size){
 			int arr2 [new_size];
@@ -27,7 +27,6 @@ class ListArray : public List<T> {
 
 	public:
 		ListArray(){
-			MINSIZE = 2;
 			n = 0;
 			max = 2;
 			arr = new int[MINSIZE];
@@ -46,7 +45,7 @@ class ListArray : public List<T> {
 		}
 
 		friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
-			for(int i=0 ; i<size() ; i++){
+			for(int i=0 ; i<list.n ; i++){
 				out << list.arr[i] << " ";
 			}
 			return out;		
