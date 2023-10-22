@@ -94,7 +94,7 @@ class ListLinked : public List<T> {
 			aux = aux->next;
 		}
 
-		aux->next = new Node(e, nullptr);
+		aux->next = new Node(e, aux->next);
 		n++;
 	}
 
