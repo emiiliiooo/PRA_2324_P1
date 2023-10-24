@@ -11,7 +11,7 @@ class ListArray : public List<T> {
 		static const int MINSIZE = 2;
 
 		void resize (int new_size){
-			int arr2 [new_size];
+			T arr2 [new_size];
 			for (int i=0 ; i<size() ; i++){
 				arr2[i] = arr[i];
 			}
@@ -45,9 +45,14 @@ class ListArray : public List<T> {
 		}
 
 		friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
+			out << "List -> [ ";
+			
 			for(int i=0 ; i<list.n ; i++){
 				out << list.arr[i] << " ";
 			}
+			
+			out << "]";
+
 			return out;		
 		}
 
@@ -55,17 +60,17 @@ class ListArray : public List<T> {
 
 		// Métodos clase LIST
 
-		void insert(int pos, T e){
+		virtual void insert(int pos, T e)override{
 			if(pos < 0 || pos > size()) {
 				throw std::out_of_range("La posición no es correcta");
 			}
 			else{
-				if(pos = 0){
-					append(e);
+				if(pos == 0){
+					prepend(e);
 				}
 
-				else if(pos = size()){
-					prepend(e);
+				else if(pos == size()){
+					append(e);
 				}
 
 				else {
@@ -78,12 +83,12 @@ class ListArray : public List<T> {
 			}
 		}
 
-		void append(T e){
+		virtual void append(T e) override{
 			arr[n] = e;
 			n++;
 		}
 
-		void prepend(T e){
+		virtual void prepend(T e) override{
 			for (int i=size() ; i > 0 ; i--){
                	                arr[i] = arr[i-1];
 			}		
@@ -91,7 +96,7 @@ class ListArray : public List<T> {
               		n++;
 		}
 
-		T remove(int pos){
+		virtual T remove(int pos) override{
 			if(pos < 0 || pos > size()-1) {
                                 throw std::out_of_range("La posición no es correcta");
                         }
@@ -104,7 +109,7 @@ class ListArray : public List<T> {
 			return aux;
 		}
 
-		T get(int pos){
+		virtual T get(int pos) override{
 			if(pos < 0 || pos > size()-1) {
                                 throw std::out_of_range("La posición no es correcta");
                         }
@@ -112,16 +117,16 @@ class ListArray : public List<T> {
 			return arr[pos];
 		}
 
-		int search (T e){
+		virtual int search (T e) override{
 			for(int i=0 ; i<size() ; i++){
-				if(arr[i] = e){
+				if(arr[i] == e){
 					return i;
 				}
 			}
 			return -1;
 		}
 
-		bool empty(){
+		virtual bool empty() override{
 			if(n==0){
 				return true;
 			}
@@ -130,7 +135,7 @@ class ListArray : public List<T> {
 			}
 		}
 
-		int size (){
+		virtual int size () override{
 			return n;
 		}
 
