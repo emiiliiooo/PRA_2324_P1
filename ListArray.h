@@ -74,7 +74,7 @@ class ListArray : public List<T> {
 			}
 
 			else if(pos == size()){
-					append(e);
+				append(e);
 			}
 
 			else {
