@@ -64,22 +64,25 @@ class ListArray : public List<T> {
 			if(pos < 0 || pos > size()) {
 				throw std::out_of_range("La posición no es correcta");
 			}
-			else{
-				if(pos == 0){
-					prepend(e);
-				}
+			
+			if(size() == max){
+				resize(size()*2);
+			}
+		
+			if(pos == 0){
+				prepend(e);
+			}
 
-				else if(pos == size()){
+			else if(pos == size()){
 					append(e);
-				}
+			}
 
-				else {
-					for (int i=size() ; i > pos ; i--){
+			else {
+				for (int i=size() ; i > pos ; i--){
 					arr[i] = arr[i-1];
-					}	
-					arr[pos] = e;
-					n++;
-				}
+				}	
+				arr[pos] = e;
+				n++;
 			}
 		}
 
